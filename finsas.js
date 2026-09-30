@@ -97,7 +97,7 @@ while (!Number.isInteger(AGE) || AGE < 18) {
     break;
   }
 }
-if (AGE>18){
+if (AGE>=18){
 let candidat = { cin: CIN, nom: NOM, prenom: PRENOM, partiPolitique: PartiPolitique, age: AGE, electeurs: [] }
 tab.push(candidat)}
   }
