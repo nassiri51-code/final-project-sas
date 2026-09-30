@@ -1,7 +1,7 @@
 const prompt = require('prompt-sync')();
 
 // menu
-function menu() {
+function menu() { 
   console.log("====================== Menu ==================== ")
   console.log(" 1. Ajouter un nouveau candidat")
   console.log(" 2. Ajouter plusieurs candidats à la fois")
@@ -53,7 +53,7 @@ const candidats = [
     electeurs: []
   },
   {
-    cin: " ", nom: "Berrada", prenom: "Omar", partiPolitique: "RNI", age: 38,
+    cin: "XX4568", nom: "Berrada", prenom: "Omar", partiPolitique: "RNI", age: 38,
     electeurs: ["CD234567", "EF345678", "MN789012"]
   },
   {
@@ -111,18 +111,18 @@ function ajouter_pls(tab) {
 }
 
 //Afficher la liste des candidats
-function affichage(tab) {
-  for (let i = 0; i < tab.length; i++) {
-    console.log(`    candidat: ${i + 1} 
-    CIN : ${tab[i].cin}
-    Nom : ${tab[i].nom}
-    Prenom : ${tab[i].prenom}
-    PartiPolitique : ${tab[i].partiPolitique}
-    Age : ${tab[i].age}
-    Nombre de votes: ${tab[i].electeurs.length}
-    ------------------------------------`)
-  }
-}
+// function affichage(tab) {
+//   for (let i = 0; i < tab.length; i++) {
+//     console.log(`    candidat: ${i + 1} 
+//     CIN : ${tab[i].cin}
+//     Nom : ${tab[i].nom}
+//     Prenom : ${tab[i].prenom}
+//     PartiPolitique : ${tab[i].partiPolitique}
+//     Age : ${tab[i].age}
+//     Nombre de votes: ${tab[i].electeurs.length}
+//     ------------------------------------`)
+//   }
+// }
 
 //Trier les candidats par nombre de votes
 function bblSort(tab){ 
@@ -138,7 +138,7 @@ function bblSort(tab){
   }return arr
 }
 
-//Trier les candidats par parti politique
+//Filtrer les candidats par parti politique
 function filter(arr) {
   let result = []
   let pp = prompt("saisir le parti politique:")
@@ -261,7 +261,7 @@ function nmbr_t_candidats(arr) {
 function nmbr_t_votes(arr) {
   let sum = 0
   for (let i = 0; i < arr.length; i++) {
-    sum += arr[i].electeurs.length
+    sum = sum + arr[i].electeurs.length
   }
 
   console.log(`le nombre total de votes est : ${sum}`)
@@ -275,7 +275,7 @@ function top_3(arr) {
     top.push(tab[i])
   }
   console.log("le Top 3 des candidats  est :")
-  affichage(top)
+ console.log(top)
 }
 
 //Afficher le nombre de candidats par parti politique.
@@ -297,7 +297,7 @@ function nombre_candidats_pp(arr) {
     }
   }
   for (let i = 0; i < partis.length; i++) {
-    console.log(partis[i] + " : " + nombres[i] + " candidat(s)");
+    console.log(partis[i] + " : " + nombres[i] );
   }
 }
 
@@ -313,22 +313,20 @@ while (choix != "0") {
       break;
     case "3":
       let m;
-      console.log(`1.Afficher la liste des candidats:
-2.Afficher la liste des candidats trier par le nombre de votes :
-3.Afficher la liste des candidats d'un parti politique spécifique : 
+      console.log(`1.Afficher la liste des candidats trier par le nombre de votes :
+2.Afficher la liste des candidats d'un parti politique spécifique : 
 0.sortir`)
-      m = prompt("choisire un nombre : ")
+      m = Number(prompt("choisire un nombre : "))
       while (m != 0) {
-        if (m == 1) {
-          affichage(candidats)
+        
+        
+         if (m ===1) {
+          console.log(bblSort(candidats))
           break;
         }
-        else if (m == 2) {
-          affichage(bblSort(candidats))
-          break;
-        }
-        else if (m == 3) {
-          affichage(filter(candidats))
+        else if (m === 2) {
+         console.log(filter(candidats))
+          
           break;
         }
         else
@@ -383,7 +381,8 @@ while (choix != "0") {
           break;
         }
         else if (k == 3) {
-          top_3(candidats)
+         
+         top_3(candidats)
           break;
         }
         else if (k == 4) {
@@ -403,3 +402,12 @@ while (choix != "0") {
       break;
   }
 }
+for (let i=0;i<arr.length;i++){
+    for(let j=0;j<arr.length-i-1;j++){
+      if (arr[j].electeurs.length<arr[j+1].electeurs.length){
+      let temp=arr[j]
+      arr[j]=arr[j+1]
+      arr[j+1]=temp
+      }
+    }
+  }
